@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a id="top"></a>
+        <h1>PROJECTE PROGRAMACIÓ</h1>
+        <p>Clara Pedrero Bellvís</p>
+    </header>
+
+    <!-- Navegació -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Inici</a></li>
+            <li><a href="DissenyBBDD.html">Disseny BBDD</a></li>
+            <li><a href="UML.html">UML</a></li>
+            <li><a href="Manual.html">Manual d'ús</a></li>
+            <li><a href="Incidències.html">Incidències</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contingut principal -->
+
+    <main>
+        <section class="bookmark">
+            <h2>INDEX</h2> 
+            <ul class="lista">
+              <li><strong><a href="#Introduccio">Introducció</a></strong></li>
+              <li><strong><a href="#AltaClients">Alta de Clients</a></strong></li>
+              <li><strong><a href="#AltaEmpleats">Alta d’Empleats</a></strong></li>
+              <li><strong><a href="#CrearReserves">Crear Reserves</a></strong></li>
+              <li><strong><a href="#LlistatReserves">Llistat de Reserves</a></strong></li>
+              <li><strong><a href="#GenerarFactures">Generar Factures</a></strong></li>
+              <li><strong><a href="#ConsultaFactures">Consulta de Factures</a></strong></li>
+              <li><strong><a href="#CrearTasca">Crear Tasca</a></strong></li>
+              <li><strong><a href="#ModificarEstatTasca">Modificar l'Estat de la Tasca</a></strong></li>
+              <li><strong><a href="#LlistatTasques">Llistat de Tasques</a></strong></li>
+            </ul>
+        </section>
+    
+        <section id="Introduccio">
+            <h3>Introducció</h3>
+            <p>Aquesta aplicació permet gestionar totes les operatives d'un hotel a través de 4 seccions principals: Altes, Reserves, Facturació i Tasques. Accedirem a cada secció mitjançant el menú principal situat a la part superior de la finestra.</p>
+        </section>
+    
+        <section id="AltaClients">
+            <h3>Alta de Clients</h3>
+            <p><strong>Accés:</strong> Menú Principal → Altes → Clients</p>
+            <p><strong>Descripció:</strong> Formulari per registrar nous clients a l'hotel. Tots els camps són obligatoris per garantir una gestió correcta de les reserves.</p>
+            <p><strong>Elements del Formulari</strong></p>
+        <p><strong>Dades personals:</strong> Nom, cognoms, adreça postal, document d'identitat (DNI/NIE/passaport), data de naixement.<br>
+            <strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.<br>
+            <strong>Dades del client:</strong> Targeta de crèdit, tipus de client (Regular o Empresa).
+        </p>
+        <div style="text-align: center;"><img src="imatges/altaClients.png" alt="Alta Clients" style="width: 75%; height: auto;"></div>
+            <p><strong>Validacions automàtiques:</strong></p>
+            <ul class="viñetas">
+                <li>Document d'identitat: Ha de tenir exactament 9 caràcters.</li>
+                <li>Data de naixement: L'usuari ha de tenir més de 18 anys.</li>
+                <li>Telèfon: Màxim 15 caràcters numèrics.</li>
+                <li>Email: Ha de contenir el símbol @.</li>
+                <li>Targeta de crèdit: Només pot contenir 16 dígits numèrics.</li>
+                <li>Data de registre: Es completa automàticament amb la data actual (no editable).</li>
+            </ul>
+            <p><strong>Funcionament</strong></p>
+            <ul class="lista">
+                <li>Introduir les dades requerides i prémer "Dóna d'Alta".</li>
+                <li>Si el DNI....<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI ja està registrat com a empleat, es crea només el registre a CLIENT, vinculant-lo a PERSONA.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI ja està registrat com a client, no es permet el registre.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI és nou, es genera un nou registre a PERSONA i CLIENT.<br>
+                <li>Es mostra una confirmació o un missatge d’error segons el resultat.</li>
+            </ul>
+            <p><strong>Gestió d'errors:</strong></p>
+            <ul class="viñetas">
+                <li>Camps incomplets: "Error: Tots els camps són obligatoris".</li>
+                <li>Format incorrecte: Missatge específic segons l’error.</li>
+                <li>Error de connexió: "No s'ha pogut donar d'alta el client".</li>
+            </ul>
+        </section>
+        <section id="AltaEmpleats">
+            <h3>Alta d’Empleats</h3>
+            <p><strong>Accés:</strong> Menú Principal → Altes → Empleats</p>
+            <p><strong>Descripció:</strong> Formulari per donar d'alta empleats nous a l'hotel. Inclou dades personals i laborals.</p>
+            <p><strong>Elements del Formulari</strong></p>
+            <p>
+                <strong>Dades personals:</strong> Nom, cognoms, adreça postal, document d'identitat (DNI/NIE/passaport), data de naixement.<br>
+                <strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.<br>
+                <strong>Dades laborals:</strong> Lloc de feina, salari brut i estat laboral (Actiu, Permís o Baixa).
+            </p>
+            <div style="text-align: center;"><img src="imatges/altaEmpleats.png" alt="Alta Empleats" style="width: 75%; height: auto;"></div>
+            <p><strong>Validacions automàtiques:</strong></p>
+            <ul class="viñetas">
+                <li>Les mateixes que en l'alta de clients.</li>
+                <li>Salari brut: Ha de ser un número decimal vàlid.</li>
+            </ul>
+            <p><strong>Funcionament</strong></p>
+            <ul class="lista">
+                <li>Introduir les dades requerides i prémer "Dóna d'Alta".</li>
+                <li>Si el DNI…<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a client): Es crea només el registre a EMPLEAT, vinculant-lo a les dades existents de PERSONA.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a empleat): No es permet el registre, no poden haver dos documents d’identitat iguals en una taula.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI nou: Es genera un nou registre a PERSONA i EMPLEAT.
+                </li>
+                <li>Confirmació o missatge d’error segons el resultat.</li>
+            </ul>
+            <p><strong>Gestió d'Errors:</strong></p>
+            <ul class="viñetas">
+                <li>Els mateixos missatges d’error que en l’alta de clients.</li>
+            </ul>
+        </section>
+        
+        <section id="CrearReserves">
+            <h3>Crear Reserves</h3>
+            <p><strong>Accés:</strong> Menú Principal → Reserves → Crear Reserva</p>
+            <p><strong>Descripció:</strong> Formulari per a la creació de reserves amb validacions de dates i disponibilitat d’habitacions.</p>
+            <p><strong>Elements del Formulari</strong></p>
+            <p>
+                <strong>Client:</strong> Seleccionable en un ComboBox amb ID, nom i document d’identitat.<br>
+                <strong>Tipus de reserva:</strong> MP o AD.<br>
+                <strong>Habitació:</strong> Selecció d’una habitació disponible.<br>
+                <strong>Dates:</strong> Data d’inici i Data fi.<br>
+            </p>
+            <p><strong>Dades Generades (Dreta):</strong></p>
+            <ul class="viñetas">
+                <li>ID de la Reserva (assignat pel sistema).</li>
+                <li>Data de la Reserva (data actual, no editable).</li>
+                <li>IVA aplicat: 10% per a empreses, 21% per a clients particulars.</li>
+                <li>Preu Total: Calculat segons la tarifa per nit multiplicada pel nombre de nits.</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/creaReserva.png" alt="Crea Reserva" style="width: 75%; height: auto;"></div>
+            <p><strong>Validacions automàtiques:</strong></p>
+            <ul class="viñetas">
+                <li>Data d’inici no pot ser anterior a avui.</li>
+                <li>Data d’inici no pot ser posterior a la de fi.</li>
+                <li>L'habitació ha d'estar lliure en les dates seleccionades.</li>
+                <li>La reserva ha de ser d’un mínim d’1 nit.</li>
+            </ul>
+            <p><strong>Funcionament</strong></p>
+            <ul class="lista">
+                <li>Seleccionar client, tipus de reserva, habitació i dates i prémer "Crear Reserva".</li>
+                <li>Si la reserva es crea correctament:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Es mostra l’ID de la reserva, la data de la reserva, l’IVA i el preu total.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;El formulari es neteja.
+                </li>
+                <li>Si hi ha errors, es mostra un missatge d’error.</li>
+            </ul>
+            
+            <p><strong>Gestió d'Errors:</strong></p>
+            <ul class="viñetas">
+                <li>Camps incomplets o incorrectes: Missatge específic segons l’error.</li>
+                <li>Habitació no disponible: "L'habitació està ocupada en aquestes dates".</li>
+                <li>Error general: "No s'ha pogut crear la reserva".</li>
+            </ul>
+        </section>
+
+        <section id="LlistatReserves">
+            <h3>Llistat de Reserves</h3>
+            <p><strong>Accés:</strong> Menú Principal → Reserves → Llistat de Reserves</p>
+            <p><strong>Descripció:</strong> Pantalla que mostra totes les reserves registrades a l'hotel.</p>
+            <p><strong>Dades Mostrades:</strong></p>
+            <ul class="viñetas">
+                <li>ID Reserva, Data Reserva, Data Inici, Data Fi, Tipus Reserva, IVA, Preu Total, ID Client, ID Habitació</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/llistatReserves.png" alt="Llistat de Reserves" style="width: 75%; height: auto;"></div>
+            <p><strong>Funcionament:</strong></p>
+            <ul class="lista">
+                <li>La llista es carrega automàticament en accedir.</li>
+                <li>Es poden consultar totes les reserves registrades.</li>
+            </ul>
+        </section>
+        
+        <section id="GenerarFactures">
+            <h3>Generar Factures</h3>
+            <p><strong>Accés:</strong> Menú Principal → Facturació → Generar Factura</p>
+            <p><strong>Descripció:</strong> Formulari per generar factures a partir de reserves pendents de facturar.</p>
+            <p><strong>Elements del Formulari</strong></p>
+            <p>
+                <strong>Reserva:</strong> Seleccionable en un ComboBox (només es mostren reserves sense factura).<br>
+                <strong>Mètode de pagament:</strong> Selecció mitjançant un ComboBox del enum “Pagament” (Transferència, Targeta, Efectiu).
+            </p>
+            <p><strong>Dades Generades:</strong></p>
+            <ul class="viñetas">
+                <li>ID Factura, ID Reserva associada, Data d’Emissió (avui), Base Imposable, IVA, Preu Total</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/generaFactura.png" alt="Genera Factura" style="width: 75%; height: auto;"></div>
+            <p><strong>Funcionament:</strong></p>
+            <ul class="lista">
+                <li>Seleccionar reserva i mètode de pagament i prémer "Generar Factura".</li>
+                <li>Si la factura es genera correctament es mostren les dades de la factura i es neteja el formulari; Si hi ha errors, es mostra un missatge d’error.</li>
+            </ul>
+            <p><strong>Gestió d'Errors i Alertes:</strong></p>
+            <ul class="viñetas">
+                <li>Falta selecció de reserva o mètode de pagament: Missatge d’error.</li>
+                <li>Error general: "No s'ha pogut generar la factura".</li>
+            </ul>
+        </section>
+        
+        <section id="ConsultaFactures">
+            <h3>Consulta de Factures</h3>
+            <p><strong>Accés:</strong> Menú Principal → Facturació → Consulta de Factures</p>
+            <p><strong>Descripció:</strong> Aquesta pantalla permet cercar i visualitzar informació detallada d’una factura mitjançant la selecció de l’ID.</p>
+            <p><strong>Elements del Formulari (Esquerra):</strong></p>
+            <ul class="viñetas">
+                <li>Selecció de Factura: Combobox amb els ID de factures disponibles.</li>
+                <li>Botó "Visualitza": Carrega les dades de la factura seleccionada.</li>
+            </ul>
+            <p><strong>Dades Mostrades (Dreta):</strong></p>
+            <ul class="viñetas">
+                <li>ID Factura, ID Reserva Associada, Data d'Emissió, Mètode de Pagament, Base Imposable, IVA Aplicat, Preu Total</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/consultaFactura.png" alt="Consulta Factura" style="width: 75%; height: auto;"></div>
+            <p><strong>Gestió d'Errors i Alertes:</strong></p>
+            <ul class="viñetas">
+                <li>Factura no seleccionada: "Error: Seleccioneu una factura per visualitzar-la."</li>
+                <li>Factura no trobada: "Error: No s'ha trobat la factura seleccionada."</li>
+            </ul>
+        </section>
+
+        <section id="CrearTasca">
+            <h3>Crear Tasca</h3>
+            <p><strong>Accés:</strong> Menú Principal → Tasques → Crear Tasca</p>
+            <p><strong>Descripció:</strong> Pantalla per crear noves tasques assignades a empleats actius.</p>
+            <p><strong>Elements del Formulari (Esquerra):</strong></p>
+            <ul class="viñetas">
+                <li><strong>Descripció de la Tasca:</strong> Camp de text obligatori.</li>
+                <li><strong>Selecció d'Empleats:</strong> Llista (ListBox) amb empleats actius, permetent seleccionar un o més.</li>
+            </ul>
+            <p><strong>Dades Generades (Dreta):</strong></p>
+            <ul class="viñetas">
+                <li>ID Tasca (assignat automàticament).</li>
+                <li>Data de Creació (data actual, no editable).</li>
+                <li>Estat de la Tasca (sempre "Pendent" en el moment de la creació).</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/creaTasca.png" alt="Crear Tasca" style="width: 75%; height: auto;"></div>
+
+            <p><strong>Funcionament:</strong></p>
+            <ul class="lista">
+                <li>Introduïu la descripció de la tasca i seleccioneu almenys un empleat actiu de la llista.</li>
+                <li>Premeu "Crea Tasca" per generar-la.</li>
+                <li>Si la creació és correcta, es mostren les dades generades i el formulari es neteja automàticament.</li>
+                <li>Si no, es mostrarà un missatge d’error.</li>
+            </ul>
+            
+            <p><strong>Validacions i Alertes:</strong></p>
+            <ul class="viñetas">
+                <li>Descripció buida: "Error: Introdueix una descripció per a la tasca."</li>
+                <li>Cap empleat seleccionat: "Error: Selecciona almenys un empleat."</li>
+                <li>Tasca creada correctament: "Èxit: Tasca creada correctament."</li>
+                <li>Error en la creació: "Error: Error al crear la tasca. Revisa les dades."</li>
+            </ul>
+            <p><strong>Nota:</strong> La data d'execució s'inserirà inicialment com a nul·la a la base de dades i s'actualitzarà automàticament amb la data actual quan la tasca es completi.</p>
+        </section>
+        
+        <section id="ModificarEstatTasca">
+            <h3>Modificar l'Estat de la Tasca d'un Empleat</h3>
+            <p><strong>Accés:</strong> Menú Principal → Tasques → Modificar Estat</p>
+            <p><strong>Descripció:</strong> Permet modificar l'estat d'un empleat en una tasca pendent. Quan tots els empleats completen la seva part, la tasca es marca com a "Completa" automàticament.</p>
+            <p><strong>Elements del Formulari:</strong></p>
+            <ul class="viñetas">
+                <li><strong>Selecció de Tasca:</strong> Llista de tasques pendents (ID, Descripció, Data de Creació).</li>
+                <li><strong>Empleats Assignats:</strong> Llista d'empleats d'aquesta tasca (ID, Nom, Cognom, Lloc de Treball, Estat).</li>
+                <li><strong>Botó "Canvia l'Estat":</strong> Alterna entre "Pendent" i "Complet".</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/modEstatTasca.png" alt="Modificar Estat Tasca" style="width: 75%; height: auto;"></div>
+            <p><strong>Funcionament:</strong></p>
+            <ul class="lista">
+                <li>Selecciona una tasca pendent del llistat.</li>
+                <li>A la llista de la dreta, es carreguen els empleats assignats amb el seu estat actual.</li>
+                <li>Trieu un empleat i prem "Canvia l'Estat":<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si estava "Pendent", passa a "Complet".<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si estava "Complet", torna a "Pendent".</li>
+                <li>Quan tots els empleats d'una tasca estan en "Complet", la tasca sencera es marca com a "Completa" i desapareix del llistat.</li>
+            </ul>
+            <p><strong>Gestió d'Errors i Alertes:</strong></p>
+            <ul class="viñetas">
+                <li>Canvi d'estat correcte: "L'empleat ha completat la seva tasca!"</li>
+                <li>Tasca completada: "Tots els empleats han completat la tasca!"</li>
+                <li>Error en la modificació: "No s'ha pogut actualitzar l'estat de la tasca."</li>
+            </ul>
+        </section>
+        
+        <section id="LlistatTasques">
+            <h3>Llistat de Tasques</h3>
+            <p><strong>Accés:</strong> Menú Principal → Tasques → Llistat de Tasques</p>
+            <p><strong>Descripció:</strong> Mostra totes les tasques registrades amb els seus empleats assignats.</p>
+            <p><strong>Elements de la Vista:</strong></p>
+            <ul class="viñetas">
+                <li><strong>Llista de Tasques:</strong> Mostra (ID, Descripció, Data de Creació, Estat).</li>
+                <li><strong>Empleats Assignats:</strong> Per cada tasca, es llisten els empleats (Nom, Cognom, Estat de la seva tasca).</li>
+            </ul>
+            <div style="text-align: center;"><img src="imatges/llistaTasques.png" alt="Llistar Tasques" style="width: 75%; height: auto;"></div>
+            <p><strong>Funcionament:</strong></p>
+            <ul class="lista">
+                <li>En accedir, es carreguen totes les tasques i els seus empleats associats.</li>
+                <li>S'actualitza automàticament quan es modifiquen estats o es creen noves tasques.</li>
+            </ul>
+        </section>
+
+        <a href="#top" class="back-to-top">  ↑  </a>
+    </main>
+
+    <!-- Peu de página -->
+    <footer>
+        <p>Clara Pedrero Bellvís</p>
+      <p>0485 Programació DAM | Institut F. Vidal i Barraquer</p>
+    </footer>
+
+</body>
+
+</html>

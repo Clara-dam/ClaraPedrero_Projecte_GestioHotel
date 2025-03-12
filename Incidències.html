@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidencies</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a id="top"></a>
+        <h1>PROJECTE PROGRAMACIÓ</h1>
+        <p>Clara Pedrero Bellvís</p>
+    </header>
+
+    <!-- Navegació -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Inici</a></li>
+            <li><a href="DissenyBBDD.html">Disseny BBDD</a></li>
+            <li><a href="UML.html">UML</a></li>
+            <li><a href="Manual.html">Manual d'ús</a></li>
+            <li><a href="Incidències.html">Incidències</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main>
+        <section id="Incidències">
+            <h2>Documentació d'Incidències de l'Aplicació</h2>
+
+            <!---------------------------------------- ERROR 1 ------------------------------------ -->
+            <h3>1. Error SQL: Taula 'BD_gestioHotel.persona' inexistent</h3>
+            <p><strong>Descripció de l'error</strong>: En intentar realitzar una operació que feia referència a la taula
+                persona, el sistema generava l'error següent:</p>
+            <ul class="lista">
+                <li><code><strong>Error SQL</strong>: Table 'BD_gestioHotel.persona' doesn't exist</code></li>
+            </ul>
+            <p>Així mateix, en intentar afegir un registre a la taula CLIENT, es produïa una violació de la clau forana:
+            </p>
+            <ul class="lista">
+                <li><code>Error SQL: Cannot add or update a child row: a foreign key constraint fails (BD_gestioHotel.CLIENT, CONSTRAINT CLIENT_ibfk_1 FOREIGN KEY (id_client) REFERENCES PERSONA (id_persona))</code>
+                </li>
+            </ul>
+            <p><strong>Solució</strong>: Després de revisar el codi SQL, es va detectar que la consulta contenia una
+                referència a la taula persona en minúscules, mentre que en la base de dades estava definida en
+                majúscules (PERSONA). La correcció es va realitzar ajustant la consulta a 'PERSONA':</p>
+            <ul class="lista">
+                <li><code>String sql = "SELECT id_persona, nom, cognom, adreça, doc_identitat, data_naixement, telefon, email FROM PERSONA WHERE doc_identitat = ?";</code>
+                </li>
+            </ul>
+            <!---------------------------------------- ERROR 2 ------------------------------------ -->
+            <h3>2. Error en la creació d'un objecte Empleat</h3>
+            <p><strong>Descripció de l'error:</strong></p>
+            <p>En intentar crear un objecte Empleat, es generava l'error següent:</p>
+            <ul class="lista">
+                <li><code>Error: String cannot be converted to double</code></li>
+            </ul>
+            <p><strong>Codi original</strong>:</p>
+            <ul class="lista">
+                <li><code>Empleat empleat = new Empleat(<br>
+     0, // L'ID es generarà automàticament a la base de dades<br>
+     llocFeinaText,<br>
+     dataContractValue,<br>
+     salariBrutText, // Error: aquesta variable és un String<br>
+     estatLaboralValue,<br>
+     persona.getIdPersona(),<br>
+     …<br>
+);</code></li>
+            </ul>
+            <p><strong>Solució</strong>: Abans de passar la variable salariBrutText al constructor, cal convertir-la
+                adouble:</p>
+            <ul class="lista">
+                <li><code>double salariBrutValue;<br>
+try {<br>
+    salariBrutValue = Double.parseDouble(salariBrutText);<br>
+} catch (NumberFormatException e) {<br>
+    mostrarAlerta("Error", "El salari brut ha de ser un nombre vàlid.");<br>
+    return; // Surt del mètode si la conversió falla<br>
+}</code></li>
+            </ul>
+            <!---------------------------------------- ERROR 3 ------------------------------------ -->
+            <h3>3. Error SQL: Violació de la clau forana en la inserció d'un empleat</h3>
+            <p><strong>Descripció de l'error:</strong></p>
+            <p>En intentar afegir un empleat, es generava l'error següent:</p>
+            <ul class="lista">
+                <li><code>Error SQL: Cannot add or update a child row: a foreign key constraint fails (BD_gestioHotel.EMPLEAT, CONSTRAINT EMPLEAT_ibfk_1 FOREIGN KEY (id_empleat) REFERENCES PERSONA (id_persona))</code>
+                </li>
+            </ul>
+            <p><strong>Causes i solució:</strong></p>
+            <p>El problema es trobava en la instrucció INSERT INTO de la taula EMPLEAT, on s'intentava inserir
+                id_empleat utilitzant el mètode getIdEmpleat(), quan aquest encara no havia estat creat. El valor
+                correcte a utilitzar era getIdPersona(), ja que id_empleat hereta aquest valor de PERSONA.</p>
+            <p><strong>Codi corregit:</strong></p>
+            <ul class="lista">
+                <li><code>String sql = "INSERT INTO EMPLEAT (id_empleat, lloc_feina, data_contractacio, salari_brut, estat_laboral) VALUES (?, ?, ?, ?, ?)";
+ordre.setInt(1, persona.getIdPersona());</code></li>
+            </ul>
+
+            <!---------------------------------------- ERROR 4 ------------------------------------ -->
+            <h3>4. Error SQL: Violació de la clau forana en la inserció d'una reserva</h3>
+            <p><strong>Descripció de l'error:</strong></p>
+            <p>En intentar inserir una reserva a la taula RESERVA, es generava el següent error:</p>
+            <ul class="lista">
+                <li><code>Error SQL: Cannot add or update a child row: a foreign key constraint fails (BD_gestioHotel.RESERVA, CONSTRAINT RESERVA_ibfk_1 FOREIGN KEY (id_client) REFERENCES CLIENT (id_client))</code>
+                </li>
+            </ul>
+            <p><strong>Causes i solució:</strong></p>
+            <p>Aquest error indicava que s'estava intentant inserir una reserva amb un id_client que no existia a la
+                taula CLIENT. Per evitar que l'usuari introdueixi manualment un ID del client i de l'habitació que pot
+                ser no existeix, he decidit implementar un ComboBox que permet seleccionar aquests valors
+                automàticament.</p>
+            <p>Per aconseguir-ho, he utilitzar els mètodes del model obtenirTotsClients() i obtenirTotesHabitacions(),
+                que carreguen les dades necessàries a les interfícies de selecció.</p>
+
+            <!---------------------------------------- ERROR 5 ------------------------------------ -->
+            <h3>5. Error en la creació d'una nova tasca</h3>
+            <p><strong>Descripció de l'error:</strong></p>
+            <p>En intentar introduir una nova tasca, es generava el següent avís i error:</p>
+            <ul class="lista">
+                <li><code>Error afegint tasca: Column 'data_execucio' cannot be null</code></li>
+            </ul>
+            <p><strong>Causes i solució:</strong></p>
+            <p>Inicialment, la columna data_execucio tenia una restricció NOT NULL, cosa que obligava a introduir una
+                data d’execució encara que la tasca estigués en estat Pendent. No obstant això, en el flux de treball de
+                l'aplicació, he decidit que una tasca es crearà sempre amb estat "Pendent" i no té sentit que tingui una
+                data d'execució assignada fins que hagi estat completada.</p>
+            <p>Per solucionar-ho, vaig modificar la base de dades per permetre valors NULL a data_execucio (conservant
+                l’altra restricció: CHECK (data_execucio >= data_creacio)). A més, es van actualitzar els registres
+                existents perquè, si la tasca està pendent, data_execucio sigui NULL.</p>
+            <p>La lògica que s’implementarà a l’aplicació és:</p>
+            <ul class="lista">
+                <li>Al crear una tasca nova, data_execucio s’estableix automàticament a NULL.</li>
+                <li>Quan una tasca es marca com completada per tots els empleats assignats, s’actualitza data_execucio
+                    amb la
+                    data actual.</li>
+            </ul>
+            <!---------------------------------------- ERROR 6 ------------------------------------ -->
+            <h3>6. Error en l'actualització de L'estat de la tasca</h3>
+            <p><strong>Descripció:</strong></p>
+            <p>Quan tots els empleats d'una tasca marquen "Completa", la tasca seguia mostrant-se com "Pendent" i la
+                data d'execució no s'actualitzava.</p>
+            <p><strong>Causes:</strong></p>
+           <P> No existia una verificació automàtica després de canviar l'estat dels empleats i la base de dades no comprovava si tots els empleats havien finalitzat, i la interfície no refrescava
+                    les dades.</P>
+            <p><strong>Solució:</strong></p>
+            <p>He implementat una consulta SQL que comprova si queden empleats pendents:</p>
+            <ul class="lista">
+                <li><code>SELECT COUNT(*) FROM REALITZAR WHERE id_tasca = [ID] AND estat_realitzacio != 'Completa';</code>
+                </li>
+            </ul>
+            <p>Si el resultat és 0, s'actualitza automàticament la tasca a "Completa" amb la data actual.</p>
+            <p>A més, he afegit un refresc automàtic de les llistes per mostrar els canvis immediatament.</p>
+
+            <!---------------------------------------- ERROR 7 ------------------------------------ -->
+            <h3>7. Error en la visualització dels empleats assignats</h3>
+            <p><strong>Descripció:</strong></p>
+            <p>En seleccionar una tasca, la llista d'empleats assignats romania buida, encara que hi hagués dades a la
+                base de dades.</p>
+            <p><strong>Causes:</strong></p>
+                <p>No s'activava cap acció en seleccionar una tasca i la consulta SQL no recuperava correctament les dades dels empleats (falta de JOIN amb les taules
+                    EMPLEAT i PERSONA).</p>
+            <p><strong>Solució:</strong></p>
+            <p>He afegit un Listener que detecta la selecció d'una tasca i dispara la càrrega dels seus empleats.</p>
+            <p>S'ha ajustat la consulta per incloure:</p>
+            <ul class="lista">
+                <li><code>SELECT e.*, p.* FROM REALITZAR JOIN EMPLEAT e ON ... JOIN PERSONA p ON ...;</code></li>
+            </ul>
+            <p>A més, he canviat a LinkedHashMap per mantenir l'ordre dels empleats i evitar errors d'índexs.</p>
+
+        </section>
+        <a href="#top" class="back-to-top"> ↑ </a>
+    </main>
+
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Clara Pedrero Bellvís</p>
+      <p>0485 Programació DAM | Institut F. Vidal i Barraquer</p>
+    </footer>
+
+</body>
+
+</html>
