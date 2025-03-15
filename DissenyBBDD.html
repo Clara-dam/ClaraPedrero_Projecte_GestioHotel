@@ -109,6 +109,7 @@
         <tr><td>4</td><td>Laura</td><td>García</td><td>C/ Pau, 8</td><td>22334455D</td><td>1988-04-12</td><td>600432109</td><td>lauragarcia@example.com</td></tr>
         <tr><td>5</td><td>Joan</td><td>López</td><td>C/ Sol, 20</td><td>11223344E</td><td>1982-09-25</td><td>600876543</td><td>joanlopez@example.com</td></tr>
         <tr><td>6</td><td>Rosa</td><td>Martínez</td><td>C/ Lluna, 5</td><td>55667788F</td><td>1995-11-10</td><td>600345678</td><td>rosamartinez@example.com</td></tr>
+        <tr><td>6</td><td>Marc</td><td>Rius</td><td>C/ Baix, 33</td><td>11223344F</td><td>1985-02-09</td><td>600334455</td><td>marc.rius@example.com</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>EMPLEAT</strong></p>
@@ -118,24 +119,25 @@
         <tr><td>1</td><td>Recepcionista</td><td>2022-01-10</td><td>18000€</td><td>Actiu</td></tr>
         <tr><td>2</td><td>Cambrer</td><td>2021-03-15</td><td>16000€</td><td>Actiu</td></tr>
         <tr><td>3</td><td>Cuiner</td><td>2020-11-20</td><td>20000€</td><td>Baixa</td></tr>
+        <tr><td>7</td><td>Neteja</td><td>2022-04-09</td><td>15000€</td><td>Actiu</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>TASCA</strong></p>
 <table>
     <tbody>
         <tr><td>id_tasca</td><td>descripcio</td><td>data_creacio</td><td>data_execucio</td><td>estat_tasca</td></tr>
-        <tr><td>1</td><td>Netejar habitacions</td><td>2025-01-01</td><td>2025-01-02</td><td>Complet</td></tr>
+        <tr><td>1</td><td>Netejar habitacions</td><td>2025-01-01</td><td>2025-01-02</td><td>Completa</td></tr>
         <tr><td>2</td><td>Servei habitacions</td><td>2025-01-03</td><td>2025-01-04</td><td>Pendent</td></tr>
-        <tr><td>3</td><td>Preparar esdeveniment</td><td>2025-01-05</td><td>2025-01-06</td><td>En curs</td></tr>
+        <tr><td>3</td><td>Preparar esdeveniment</td><td>2025-01-05</td><td>2025-01-06</td><td>Pendent</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>REALITZAR</strong></p>
 <table>
     <tbody>
         <tr><td>id_empleat</td><td>id_tasca</td><td>estat_realitzacio</td></tr>
-        <tr><td>1</td><td>1</td><td>Complet</td></tr>
+        <tr><td>1</td><td>1</td><td>Completa</td></tr>
         <tr><td>2</td><td>2</td><td>Pendent</td></tr>
-        <tr><td>3</td><td>3</td><td>En curs</td></tr>
+        <tr><td>3</td><td>3</td><td>Pendent</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>CLIENT</strong></p>
@@ -152,17 +154,17 @@
     <tbody>
         <tr><td>id_habitacio</td><td>num_habitacio</td><td>tipus</td><td>capacitat</td><td>preu_nit_AD</td><td>preu_nit_MP</td><td>estat_habitacio</td><td>descripcio</td></tr>
         <tr><td>1</td><td>101</td><td>Individual</td><td>1</td><td>50€</td><td>70€</td><td>Lliure</td><td>Simple</td></tr>
-        <tr><td>2</td><td>102</td><td>Doble</td><td>2</td><td>90€</td><td>120€</td><td>Ocupada</td><td>Doble</td></tr>
-        <tr><td>3</td><td>103</td><td>Suite</td><td>4</td><td>200€</td><td>250€</td><td>Manteniment</td><td>Suite</td></tr>
+        <tr><td>2</td><td>102</td><td>Doble</td><td>2</td><td>90€</td><td>120€</td><td>Lliure</td><td>Doble</td></tr>
+        <tr><td>3</td><td>103</td><td>Suite</td><td>4</td><td>200€</td><td>250€</td><td>Lliure</td><td>Suite</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>RESERVA</strong></p>
 <table>
     <tbody>
         <tr><td>id_reserva</td><td>data_reserva</td><td>data_inici</td><td>data_fi</td><td>tipus_reserva</td><td>tipus_iva</td><td>preu_total</td><td>id_client</td><td>id_habitacio</td></tr>
-        <tr><td>1</td><td>2024-12-10</td><td>2024-12-20</td><td>2024-12-25</td><td>MP</td><td>21%</td><td>500€</td><td>1</td><td>1</td></tr>
-        <tr><td>2</td><td>2024-12-11</td><td>2024-12-21</td><td>2024-12-26</td><td>AD</td><td>10%</td><td>450€</td><td>2</td><td>2</td></tr>
-        <tr><td>3</td><td>2024-12-12</td><td>2024-12-22</td><td>2024-12-27</td><td>MP</td><td>21%</td><td>700€</td><td>3</td><td>3</td></tr>
+        <tr><td>1</td><td>2024-12-10</td><td>2024-12-20</td><td>2024-12-25</td><td>MP</td><td>21%</td><td>500€</td><td>4</td><td>1</td></tr>
+        <tr><td>2</td><td>2024-12-11</td><td>2024-12-21</td><td>2024-12-26</td><td>AD</td><td>10%</td><td>450€</td><td>5</td><td>2</td></tr>
+        <tr><td>3</td><td>2024-12-12</td><td>2024-12-22</td><td>2024-12-27</td><td>MP</td><td>21%</td><td>700€</td><td>6</td><td>3</td></tr>
     </tbody>
 </table>
 <p style="text-align: center;"><strong>FACTURA</strong></p>
