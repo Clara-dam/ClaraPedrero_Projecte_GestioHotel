@@ -56,10 +56,12 @@
             <p><strong>Accés:</strong> Menú Principal → Altes → Clients</p>
             <p><strong>Descripció:</strong> Formulari per registrar nous clients a l'hotel. Tots els camps són obligatoris per garantir una gestió correcta de les reserves.</p>
             <p><strong>Elements del Formulari</strong></p>
-        <p><strong>Dades personals:</strong> Nom, cognoms, adreça postal, document d'identitat (DNI/NIE/passaport), data de naixement.<br>
-            <strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.<br>
-            <strong>Dades del client:</strong> Targeta de crèdit, tipus de client (Regular, Empresa o VIP).
-        </p>
+            <ul class="viñetas">
+                <li><strong>Comprovació DNI:</strong> Camp per introduir el document d'identitat i botó "Comprova el DNI".</li>
+                <li><strong>Dades personals:</strong> Nom, cognoms, adreça postal i data de naixement.</li>
+                <li><strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.</li>
+                <li><strong>Dades del client:</strong> Targeta de crèdit, tipus de client (Regular, Empresa o VIP).</li>
+            </ul>
         <div style="text-align: center;"><img src="imatges/altaClients.png" alt="Alta Clients" style="width: 75%; height: auto;"></div>
             <p><strong>Validacions automàtiques:</strong></p>
             <ul class="viñetas">
@@ -74,9 +76,9 @@
             <ul class="lista">
                 <li>Introduir les dades requerides i prémer "Dóna d'Alta".</li>
                 <li>Si el DNI....<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI ja està registrat com a empleat, es crea només el registre a CLIENT, vinculant-lo a PERSONA.<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI ja està registrat com a client, no es permet el registre.<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si el DNI és nou, es genera un nou registre a PERSONA i CLIENT.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a empleat): es carreguen les dades associades i es crea només el registre a CLIENT, vinculant-lo a PERSONA.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a client): no es permet el registre.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI nou: es genera un nou registre a PERSONA i CLIENT.<br>
                 <li>Es mostra una confirmació o un missatge d’error segons el resultat.</li>
             </ul>
             <p><strong>Gestió d'errors:</strong></p>
@@ -91,11 +93,12 @@
             <p><strong>Accés:</strong> Menú Principal → Altes → Empleats</p>
             <p><strong>Descripció:</strong> Formulari per donar d'alta empleats nous a l'hotel. Inclou dades personals i laborals.</p>
             <p><strong>Elements del Formulari</strong></p>
-            <p>
-                <strong>Dades personals:</strong> Nom, cognoms, adreça postal, document d'identitat (DNI/NIE/passaport), data de naixement.<br>
-                <strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.<br>
-                <strong>Dades laborals:</strong> Lloc de feina, salari brut i estat laboral (Actiu, Permís o Baixa).
-            </p>
+            <ul class="viñetas">
+                <li><strong>Comprovació DNI:</strong> Camp per introduir el document d'identitat i botó "Comprova el DNI".</li>
+                <li><strong>Dades personals:</strong> Nom, cognoms, adreça postal i data de naixement.</li>
+                <li><strong>Dades de contacte:</strong> Número de telèfon i correu electrònic.</li>
+                <li><strong>Dades laborals:</strong> Lloc de feina, salari brut i estat laboral (Actiu, Permís o Baixa).</li>
+            </ul>
             <div style="text-align: center;"><img src="imatges/altaEmpleats.png" alt="Alta Empleats" style="width: 75%; height: auto;"></div>
             <p><strong>Validacions automàtiques:</strong></p>
             <ul class="viñetas">
@@ -106,8 +109,8 @@
             <ul class="lista">
                 <li>Introduir les dades requerides i prémer "Dóna d'Alta".</li>
                 <li>Si el DNI…<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a client): Es crea només el registre a EMPLEAT, vinculant-lo a les dades existents de PERSONA.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a empleat): No es permet el registre, no poden haver dos documents d’identitat iguals en una taula.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a client): es carreguen les dades associades i es crea només el registre a EMPLEAT, vinculant-lo a PERSONA.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI ja registrat (com a empleat): no es permet el registre, no poden haver dos documents d’identitat iguals en una taula.<br>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DNI nou: Es genera un nou registre a PERSONA i EMPLEAT.
                 </li>
                 <li>Confirmació o missatge d’error segons el resultat.</li>
@@ -123,12 +126,12 @@
             <p><strong>Accés:</strong> Menú Principal → Reserves → Crear Reserva</p>
             <p><strong>Descripció:</strong> Formulari per a la creació de reserves amb validacions de dates i disponibilitat d’habitacions.</p>
             <p><strong>Elements del Formulari</strong></p>
-            <p>
-                <strong>Client:</strong> Seleccionable en un ComboBox amb ID, nom i document d’identitat.<br>
-                <strong>Tipus de reserva:</strong> MP o AD.<br>
-                <strong>Habitació:</strong> Selecció d’una habitació disponible.<br>
-                <strong>Dates:</strong> Data d’inici i Data fi.<br>
-            </p>
+            <ul class="viñetas">
+                <li><strong>Client:</strong> Seleccionable en un ComboBox amb ID, nom i document d’identitat.</li>
+                <li><strong>Tipus de reserva:</strong> MP o AD.</li>
+                <li><strong>Habitació:</strong> Selecció d’una habitació disponible.</li>
+                <li><strong>Dates:</strong> Data d’inici i Data fi.</li>
+            </ul>
             <p><strong>Dades Generades (Dreta):</strong></p>
             <ul class="viñetas">
                 <li>ID de la Reserva (assignat pel sistema).</li>
@@ -183,10 +186,10 @@
             <p><strong>Accés:</strong> Menú Principal → Facturació → Generar Factura</p>
             <p><strong>Descripció:</strong> Formulari per generar factures a partir de reserves pendents de facturar.</p>
             <p><strong>Elements del Formulari</strong></p>
-            <p>
-                <strong>Reserva:</strong> Seleccionable en un ComboBox (només es mostren reserves sense factura).<br>
-                <strong>Mètode de pagament:</strong> Selecció mitjançant un ComboBox del enum “Pagament” (Transferència, Targeta, Efectiu).
-            </p>
+            <ul class="viñetas">
+                <li><strong>Reserva:</strong> Seleccionable en un ComboBox (només es mostren reserves sense factura). Es visualitza l'ID de la reserva i el nom del client que la ha realitzat.</li>
+                <li><strong>Mètode de pagament:</strong> Selecció mitjançant un ComboBox del enum “Pagament” (Transferència, Targeta, Efectiu).</li>
+            </ul>
             <p><strong>Dades Generades:</strong></p>
             <ul class="viñetas">
                 <li>ID Factura, ID Reserva associada, Data d’Emissió (avui), Base Imposable, IVA, Preu Total</li>
